@@ -1537,21 +1537,19 @@ tables, the so-called natural join</li>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">left_join</span>(weather)</span></code></pre></div>
 <pre><code>## Joining, by = c(&quot;year&quot;, &quot;month&quot;, &quot;day&quot;, &quot;hour&quot;, &quot;origin&quot;)</code></pre>
 <pre><code>## # A tibble: 336,776 x 18
-##     year month   day  hour origin dest  tailnum carrier  temp  dewp humid
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  2013     1     1     5 EWR    IAH   N14228  UA       39.0  28.0  64.4
-##  2  2013     1     1     5 LGA    IAH   N24211  UA       39.9  25.0  54.8
-##  3  2013     1     1     5 JFK    MIA   N619AA  AA       39.0  27.0  61.6
-##  4  2013     1     1     5 JFK    BQN   N804JB  B6       39.0  27.0  61.6
-##  5  2013     1     1     6 LGA    ATL   N668DN  DL       39.9  25.0  54.8
-##  6  2013     1     1     5 EWR    ORD   N39463  UA       39.0  28.0  64.4
-##  7  2013     1     1     6 EWR    FLL   N516JB  B6       37.9  28.0  67.2
-##  8  2013     1     1     6 LGA    IAD   N829AS  EV       39.9  25.0  54.8
-##  9  2013     1     1     6 JFK    MCO   N593JB  B6       37.9  27.0  64.3
-## 10  2013     1     1     6 LGA    ORD   N3ALAA  AA       39.9  25.0  54.8
-## # ... with 336,766 more rows, and 7 more variables: wind_dir &lt;dbl&gt;,
-## #   wind_speed &lt;dbl&gt;, wind_gust &lt;dbl&gt;, precip &lt;dbl&gt;, pressure &lt;dbl&gt;,
-## #   visib &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+##     year month   day  hour origin dest  tailnum carrier  temp  dewp humid wind_dir wind_speed wind_gust precip pressure visib
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+##  1  2013     1     1     5 EWR    IAH   N14228  UA       39.0  28.0  64.4      260       12.7      NA        0    1012.    10
+##  2  2013     1     1     5 LGA    IAH   N24211  UA       39.9  25.0  54.8      250       15.0      21.9      0    1011.    10
+##  3  2013     1     1     5 JFK    MIA   N619AA  AA       39.0  27.0  61.6      260       15.0      NA        0    1012.    10
+##  4  2013     1     1     5 JFK    BQN   N804JB  B6       39.0  27.0  61.6      260       15.0      NA        0    1012.    10
+##  5  2013     1     1     6 LGA    ATL   N668DN  DL       39.9  25.0  54.8      260       16.1      23.0      0    1012.    10
+##  6  2013     1     1     5 EWR    ORD   N39463  UA       39.0  28.0  64.4      260       12.7      NA        0    1012.    10
+##  7  2013     1     1     6 EWR    FLL   N516JB  B6       37.9  28.0  67.2      240       11.5      NA        0    1012.    10
+##  8  2013     1     1     6 LGA    IAD   N829AS  EV       39.9  25.0  54.8      260       16.1      23.0      0    1012.    10
+##  9  2013     1     1     6 JFK    MCO   N593JB  B6       37.9  27.0  64.3      260       13.8      NA        0    1013.    10
+## 10  2013     1     1     6 LGA    ORD   N3ALAA  AA       39.9  25.0  54.8      260       16.1      23.0      0    1012.    10
+## # ... with 336,766 more rows, and 1 more variable: time_hour &lt;dttm&gt;</code></pre>
 <ul>
 <li>A character vector, by = “x”. This is like a natural join, but uses
 only some of the common variables.</li>
@@ -1566,20 +1564,19 @@ will be used in the output.</li>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>flights2 <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">left_join</span>(airports, <span class="fu">c</span>(<span class="st">&quot;dest&quot;</span> <span class="ot">=</span> <span class="st">&quot;faa&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 336,776 x 15
-##     year month   day  hour origin dest  tailnum carrier name     lat   lon   alt
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  2013     1     1     5 EWR    IAH   N14228  UA      Georg~  30.0 -95.3    97
-##  2  2013     1     1     5 LGA    IAH   N24211  UA      Georg~  30.0 -95.3    97
-##  3  2013     1     1     5 JFK    MIA   N619AA  AA      Miami~  25.8 -80.3     8
-##  4  2013     1     1     5 JFK    BQN   N804JB  B6      &lt;NA&gt;    NA    NA      NA
-##  5  2013     1     1     6 LGA    ATL   N668DN  DL      Harts~  33.6 -84.4  1026
-##  6  2013     1     1     5 EWR    ORD   N39463  UA      Chica~  42.0 -87.9   668
-##  7  2013     1     1     6 EWR    FLL   N516JB  B6      Fort ~  26.1 -80.2     9
-##  8  2013     1     1     6 LGA    IAD   N829AS  EV      Washi~  38.9 -77.5   313
-##  9  2013     1     1     6 JFK    MCO   N593JB  B6      Orlan~  28.4 -81.3    96
-## 10  2013     1     1     6 LGA    ORD   N3ALAA  AA      Chica~  42.0 -87.9   668
-## # ... with 336,766 more rows, and 3 more variables: tz &lt;dbl&gt;, dst &lt;chr&gt;,
-## #   tzone &lt;chr&gt;</code></pre>
+##     year month   day  hour origin dest  tailnum carrier name                              lat   lon   alt    tz dst   tzone    
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;                           &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
+##  1  2013     1     1     5 EWR    IAH   N14228  UA      George Bush Intercontinental     30.0 -95.3    97    -6 A     America/~
+##  2  2013     1     1     5 LGA    IAH   N24211  UA      George Bush Intercontinental     30.0 -95.3    97    -6 A     America/~
+##  3  2013     1     1     5 JFK    MIA   N619AA  AA      Miami Intl                       25.8 -80.3     8    -5 A     America/~
+##  4  2013     1     1     5 JFK    BQN   N804JB  B6      &lt;NA&gt;                             NA    NA      NA    NA &lt;NA&gt;  &lt;NA&gt;     
+##  5  2013     1     1     6 LGA    ATL   N668DN  DL      Hartsfield Jackson Atlanta Intl  33.6 -84.4  1026    -5 A     America/~
+##  6  2013     1     1     5 EWR    ORD   N39463  UA      Chicago Ohare Intl               42.0 -87.9   668    -6 A     America/~
+##  7  2013     1     1     6 EWR    FLL   N516JB  B6      Fort Lauderdale Hollywood Intl   26.1 -80.2     9    -5 A     America/~
+##  8  2013     1     1     6 LGA    IAD   N829AS  EV      Washington Dulles Intl           38.9 -77.5   313    -5 A     America/~
+##  9  2013     1     1     6 JFK    MCO   N593JB  B6      Orlando Intl                     28.4 -81.3    96    -5 A     America/~
+## 10  2013     1     1     6 LGA    ORD   N3ALAA  AA      Chicago Ohare Intl               42.0 -87.9   668    -6 A     America/~
+## # ... with 336,766 more rows</code></pre>
 <h3 id="other-implementations">1.1.3 Other Implementations</h3>
 <p>base::merge() can perform all four types of mutating join:</p>
 <p><img src="data:image/png;base64,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" /></p>
@@ -1619,21 +1616,19 @@ in y.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">filter</span>(dest <span class="sc">%in%</span> top_dest<span class="sc">$</span>dest)</span></code></pre></div>
 <pre><code>## # A tibble: 141,145 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
-##  1  2013     1     1      542            540         2      923            850
-##  2  2013     1     1      554            600        -6      812            837
-##  3  2013     1     1      554            558        -4      740            728
-##  4  2013     1     1      555            600        -5      913            854
-##  5  2013     1     1      557            600        -3      838            846
-##  6  2013     1     1      558            600        -2      753            745
-##  7  2013     1     1      558            600        -2      924            917
-##  8  2013     1     1      558            600        -2      923            937
-##  9  2013     1     1      559            559         0      702            706
-## 10  2013     1     1      600            600         0      851            858
-## # ... with 141,135 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
-## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
-## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum origin dest 
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;
+##  1  2013     1     1      542            540         2      923            850        33 AA        1141 N619AA  JFK    MIA  
+##  2  2013     1     1      554            600        -6      812            837       -25 DL         461 N668DN  LGA    ATL  
+##  3  2013     1     1      554            558        -4      740            728        12 UA        1696 N39463  EWR    ORD  
+##  4  2013     1     1      555            600        -5      913            854        19 B6         507 N516JB  EWR    FLL  
+##  5  2013     1     1      557            600        -3      838            846        -8 B6          79 N593JB  JFK    MCO  
+##  6  2013     1     1      558            600        -2      753            745         8 AA         301 N3ALAA  LGA    ORD  
+##  7  2013     1     1      558            600        -2      924            917         7 UA         194 N29129  JFK    LAX  
+##  8  2013     1     1      558            600        -2      923            937       -14 UA        1124 N53441  EWR    SFO  
+##  9  2013     1     1      559            559         0      702            706        -4 B6        1806 N708JB  JFK    BOS  
+## 10  2013     1     1      600            600         0      851            858        -7 B6         371 N595JB  LGA    FLL  
+## # ... with 141,135 more rows, and 5 more variables: air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <ul>
 <li>But it’s difficult to extend that approach to multiple
 variables.</li>
@@ -1642,21 +1637,19 @@ variables.</li>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">semi_join</span>(top_dest)</span></code></pre></div>
 <pre><code>## Joining, by = &quot;dest&quot;</code></pre>
 <pre><code>## # A tibble: 141,145 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
-##  1  2013     1     1      542            540         2      923            850
-##  2  2013     1     1      554            600        -6      812            837
-##  3  2013     1     1      554            558        -4      740            728
-##  4  2013     1     1      555            600        -5      913            854
-##  5  2013     1     1      557            600        -3      838            846
-##  6  2013     1     1      558            600        -2      753            745
-##  7  2013     1     1      558            600        -2      924            917
-##  8  2013     1     1      558            600        -2      923            937
-##  9  2013     1     1      559            559         0      702            706
-## 10  2013     1     1      600            600         0      851            858
-## # ... with 141,135 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
-## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
-## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum origin dest 
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;
+##  1  2013     1     1      542            540         2      923            850        33 AA        1141 N619AA  JFK    MIA  
+##  2  2013     1     1      554            600        -6      812            837       -25 DL         461 N668DN  LGA    ATL  
+##  3  2013     1     1      554            558        -4      740            728        12 UA        1696 N39463  EWR    ORD  
+##  4  2013     1     1      555            600        -5      913            854        19 B6         507 N516JB  EWR    FLL  
+##  5  2013     1     1      557            600        -3      838            846        -8 B6          79 N593JB  JFK    MCO  
+##  6  2013     1     1      558            600        -2      753            745         8 AA         301 N3ALAA  LGA    ORD  
+##  7  2013     1     1      558            600        -2      924            917         7 UA         194 N29129  JFK    LAX  
+##  8  2013     1     1      558            600        -2      923            937       -14 UA        1124 N53441  EWR    SFO  
+##  9  2013     1     1      559            559         0      702            706        -4 B6        1806 N708JB  JFK    BOS  
+## 10  2013     1     1      600            600         0      851            858        -7 B6         371 N595JB  LGA    FLL  
+## # ... with 141,135 more rows, and 5 more variables: air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">anti_join</span>(planes, <span class="at">by =</span> <span class="st">&quot;tailnum&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">count</span>(tailnum, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
@@ -2166,15 +2159,15 @@ str_view_all()</li>
 <h3 id="basic-matches">3.3.1 Basic matches</h3>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
 <span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;an&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-8019bb288a1cca095aaf" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8019bb288a1cca095aaf">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7ac2851363b17ff2bba2" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7ac2851363b17ff2bba2">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>The next step up in complexity is ., which matches any character
 (except a newline):</li>
 </ul>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;.a.&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-32367d44368d4fb01294" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-32367d44368d4fb01294">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-340cf5a58d47206207c2" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-340cf5a58d47206207c2">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>But if “.” matches any character, how do you match the character
 “.”?</li>
@@ -2187,8 +2180,8 @@ str_view_all()</li>
 <pre><code>## \.</code></pre>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># And this tells R to look for an explicit .</span></span>
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a.c&quot;</span>, <span class="st">&quot;bef&quot;</span>), <span class="st">&quot;a</span><span class="sc">\\</span><span class="st">.c&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-bc846357698c9328f4e7" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bc846357698c9328f4e7">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-41e6e97f09ab1ab1bbb8" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-41e6e97f09ab1ab1bbb8">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>If \ is used as an escape character in regular expressions, how do
 you match a literal ?</li>
@@ -2197,8 +2190,8 @@ you match a literal ?</li>
 <span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(x)</span></code></pre></div>
 <pre><code>## a\b</code></pre>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;</span><span class="sc">\\\\</span><span class="st">&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-75310a4a64f8ae51bbe2" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-75310a4a64f8ae51bbe2">{"x":{"html":"<ul>\n  <li>a<span class='match'>\\<\/span>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-04fddbfd7049cef21e62" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-04fddbfd7049cef21e62">{"x":{"html":"<ul>\n  <li>a<span class='match'>\\<\/span>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <h3 id="anchors">3.3.2 Anchors</h3>
 <ul>
 <li><p>It’s often useful to anchor the regular expression so that it
@@ -2208,21 +2201,21 @@ $ to match the end of the string.</p></li>
 </ul>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
 <span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;^a&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-9d9342a2476bc616672d" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9d9342a2476bc616672d">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>banana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1f558039c0bbf0716d57" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1f558039c0bbf0716d57">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>banana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;a$&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-b57f4b426dbbfe7dc936" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b57f4b426dbbfe7dc936">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>banan<span class='match'>a<\/span><\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-26b525e990ee35534486" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-26b525e990ee35534486">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>banan<span class='match'>a<\/span><\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>you begin with power (^), you end up with money ($).</li>
 </ul>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple pie&quot;</span>, <span class="st">&quot;apple&quot;</span>, <span class="st">&quot;apple cake&quot;</span>)</span>
 <span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;apple&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-5428b91bfa39bd3a9b97" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5428b91bfa39bd3a9b97">{"x":{"html":"<ul>\n  <li><span class='match'>apple<\/span> pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li><span class='match'>apple<\/span> cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-75cc560b184202f5f1d5" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-75cc560b184202f5f1d5">{"x":{"html":"<ul>\n  <li><span class='match'>apple<\/span> pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li><span class='match'>apple<\/span> cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;^apple$&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-96189e47750e82c77b6f" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-96189e47750e82c77b6f">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6b2ed9a58e728040a241" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6b2ed9a58e728040a241">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>You can also match the boundary between words with \b. \bsum\b</li>
 </ul>
@@ -2237,11 +2230,11 @@ alternatives</h3>
 need to escape the \ for the string, so you’ll type “\\d” or “\\s”.</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look for a literal character that normally has special meaning in a regex</span></span>
 <span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a.c&quot;</span>, <span class="st">&quot;a*c&quot;</span>, <span class="st">&quot;a c&quot;</span>), <span class="st">&quot;a[.]c&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-a88f42c4f924d04b38b9" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a88f42c4f924d04b38b9">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>a*c<\/li>\n  <li>a c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-06ab53e1e64a4f413708" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-06ab53e1e64a4f413708">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>a*c<\/li>\n  <li>a c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a.c&quot;</span>, <span class="st">&quot;a*c&quot;</span>, <span class="st">&quot;a c&quot;</span>), <span class="st">&quot;.[*]c&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-dcd71873db3011c66080" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-dcd71873db3011c66080">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a.c<\/li>\n  <li><span class='match'>a*c<\/span><\/li>\n  <li>a c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-35a5fbe4f7ae05494617" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-35a5fbe4f7ae05494617">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a.c<\/li>\n  <li><span class='match'>a*c<\/span><\/li>\n  <li>a c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li><p>This works for most (but not all) regex metacharacters: $ . | ? *
 + ( ) [ {. Unfortunately, a few characters have special meaning even
@@ -2253,8 +2246,8 @@ For example,</p>
 abc|xyz matches abc or xyz not abcyz or abxyz</p></li>
 </ul>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="fu">c</span>(<span class="st">&quot;grey&quot;</span>, <span class="st">&quot;gray&quot;</span>), <span class="st">&quot;gr(e|a)y&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-d4142bdc9a6e0b1d362c" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d4142bdc9a6e0b1d362c">{"x":{"html":"<ul>\n  <li><span class='match'>grey<\/span><\/li>\n  <li><span class='match'>gray<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d2a88258da753adbe84b" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d2a88258da753adbe84b">{"x":{"html":"<ul>\n  <li><span class='match'>grey<\/span><\/li>\n  <li><span class='match'>gray<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <h3 id="repetition">3.3.4 Repetition</h3>
 <ul>
 <li><p>The next step up in power involves controlling how many times a
@@ -2265,14 +2258,14 @@ pattern matches:</p>
 </ul>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;1888 is the longest year in Roman numerals: MDCCCLXXXVIII&quot;</span></span>
 <span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;CC?&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-bef99e0fbe6127480873" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bef99e0fbe6127480873">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f081903bf24db6074a65" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f081903bf24db6074a65">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;CC+&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-940d6e677f6c882598b7" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-940d6e677f6c882598b7">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-687d9da5d06a7665f9fa" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-687d9da5d06a7665f9fa">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&#39;C[LX]+&#39;</span>)</span></code></pre></div>
-<div id="htmlwidget-49a9e5c51ac96795704c" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-49a9e5c51ac96795704c">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MDCC<span class='match'>CLXXX<\/span>VIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ba301b0d2474adf1fa3b" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ba301b0d2474adf1fa3b">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MDCC<span class='match'>CLXXX<\/span>VIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li><p>Note that the precedence of these operators is high, that means
 most uses will need parentheses, like bana(na)+</p></li>
@@ -2283,11 +2276,11 @@ most uses will need parentheses, like bana(na)+</p></li>
 {n,m}: between n and m</p></li>
 </ul>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;C{2,3}&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-1e03e64d8fb150cb886c" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1e03e64d8fb150cb886c">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0db043198de91559e651" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0db043198de91559e651">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&#39;C{2,3}?&#39;</span>)</span></code></pre></div>
-<div id="htmlwidget-b5b7142502c2e8908f31" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b5b7142502c2e8908f31">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-938cf4fd112cf3148338" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-938cf4fd112cf3148338">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <h3 id="grouping-and-backreference">3.3.5 Grouping and
 backreference</h3>
 <ul>
@@ -2295,15 +2288,15 @@ backreference</h3>
 etc.</li>
 </ul>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(fruit, <span class="st">&quot;(..)</span><span class="sc">\\</span><span class="st">1&quot;</span>, <span class="at">match =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div id="htmlwidget-7506ca8fb283d6d8f7e5" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7506ca8fb283d6d8f7e5">{"x":{"html":"<ul>\n  <li>b<span class='match'>anan<\/span>a<\/li>\n  <li><span class='match'>coco<\/span>nut<\/li>\n  <li><span class='match'>cucu<\/span>mber<\/li>\n  <li><span class='match'>juju<\/span>be<\/li>\n  <li><span class='match'>papa<\/span>ya<\/li>\n  <li>s<span class='match'>alal<\/span> berry<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2470bf2c8d70cda46717" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2470bf2c8d70cda46717">{"x":{"html":"<ul>\n  <li>b<span class='match'>anan<\/span>a<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>fruittt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;banbnanbn&quot;</span>, <span class="st">&quot;banbnbnan&quot;</span>, <span class="st">&quot;papaya&quot;</span>)</span>
 <span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(fruittt, <span class="st">&quot;(..)(..)</span><span class="sc">\\</span><span class="st">1</span><span class="sc">\\</span><span class="st">2&quot;</span>, <span class="at">match =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div id="htmlwidget-9b12bb93d2ec232304c1" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9b12bb93d2ec232304c1">{"x":{"html":"<ul>\n  <li>b<span class='match'>anbnanbn<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6665f5932d086b5be73b" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6665f5932d086b5be73b">{"x":{"html":"<ul>\n  <li>b<span class='match'>anbnanbn<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(fruittt, <span class="st">&quot;(..)(..)</span><span class="sc">\\</span><span class="st">2</span><span class="sc">\\</span><span class="st">1&quot;</span>, <span class="at">match =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div id="htmlwidget-f60c480f2efbac267cee" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f60c480f2efbac267cee">{"x":{"html":"<ul>\n  <li>b<span class='match'>anbnbnan<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c48b3eecd19d7a0ca374" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c48b3eecd19d7a0ca374">{"x":{"html":"<ul>\n  <li>b<span class='match'>anbnbnan<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="tools" class="slide section level2">
 <h1>3.4 Tools</h1>
@@ -2378,12 +2371,9 @@ and you’ll want to use filter instead:</li>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(sentences)</span></code></pre></div>
 <pre><code>## [1] 720</code></pre>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sentences)</span></code></pre></div>
-<pre><code>## [1] &quot;The birch canoe slid on the smooth planks.&quot; 
-## [2] &quot;Glue the sheet to the dark blue background.&quot;
-## [3] &quot;It&#39;s easy to tell the depth of a well.&quot;     
-## [4] &quot;These days a chicken leg is a rare dish.&quot;   
-## [5] &quot;Rice is often served in round bowls.&quot;       
-## [6] &quot;The juice of lemons makes fine punch.&quot;</code></pre>
+<pre><code>## [1] &quot;The birch canoe slid on the smooth planks.&quot;  &quot;Glue the sheet to the dark blue background.&quot;
+## [3] &quot;It&#39;s easy to tell the depth of a well.&quot;      &quot;These days a chicken leg is a rare dish.&quot;   
+## [5] &quot;Rice is often served in round bowls.&quot;        &quot;The juice of lemons makes fine punch.&quot;</code></pre>
 <ul>
 <li>Imagine we want to find all sentences that contain a colour.</li>
 </ul>
@@ -2406,8 +2396,8 @@ than 1 match</li>
 </ul>
 <div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a>more <span class="ot">&lt;-</span> sentences[<span class="fu">str_count</span>(sentences, colour_match) <span class="sc">&gt;</span> <span class="dv">1</span>]</span>
 <span id="cb166-2"><a href="#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view_all</span>(more, colour_match)</span></code></pre></div>
-<div id="htmlwidget-5902dcb3baa944d5b5e2" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5902dcb3baa944d5b5e2">{"x":{"html":"<ul>\n  <li>It is hard to erase <span class='match'>blue<\/span> or <span class='match'>red<\/span> ink.<\/li>\n  <li>The <span class='match'>green<\/span> light in the brown box flicke<span class='match'>red<\/span>.<\/li>\n  <li>The sky in the west is tinged with <span class='match'>orange<\/span> <span class='match'>red<\/span>.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4dbc7278adf1590f5a40" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4dbc7278adf1590f5a40">{"x":{"html":"<ul>\n  <li>It is hard to erase <span class='match'>blue<\/span> or <span class='match'>red<\/span> ink.<\/li>\n  <li>The <span class='match'>green<\/span> light in the brown box flicke<span class='match'>red<\/span>.<\/li>\n  <li>The sky in the west is tinged with <span class='match'>orange<\/span> <span class='match'>red<\/span>.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(more, colour_match)</span></code></pre></div>
 <pre><code>## [1] &quot;blue&quot;   &quot;green&quot;  &quot;orange&quot;</code></pre>
 <ul>
@@ -2443,8 +2433,8 @@ imagine we want to extract nouns from the sentences.</li>
 <span id="cb173-5"><a href="#cb173-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
 <span id="cb173-6"><a href="#cb173-6" aria-hidden="true" tabindex="-1"></a>has_noun <span class="sc">%&gt;%</span> </span>
 <span id="cb173-7"><a href="#cb173-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_extract</span>(noun)</span></code></pre></div>
-<pre><code>##  [1] &quot;the smooth&quot; &quot;the sheet&quot;  &quot;the depth&quot;  &quot;a chicken&quot;  &quot;the parked&quot;
-##  [6] &quot;the sun&quot;    &quot;the huge&quot;   &quot;the ball&quot;   &quot;the woman&quot;  &quot;a helps&quot;</code></pre>
+<pre><code>##  [1] &quot;the smooth&quot; &quot;the sheet&quot;  &quot;the depth&quot;  &quot;a chicken&quot;  &quot;the parked&quot; &quot;the sun&quot;    &quot;the huge&quot;   &quot;the ball&quot;   &quot;the woman&quot; 
+## [10] &quot;a helps&quot;</code></pre>
 <ul>
 <li>str_extract() gives us the complete match; str_match() gives each
 individual component.</li>
@@ -2509,10 +2499,8 @@ to insert components of the match</li>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="#cb185-1" aria-hidden="true" tabindex="-1"></a>sentences <span class="sc">%&gt;%</span> </span>
 <span id="cb185-2"><a href="#cb185-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="st">&quot;([^ ]+) ([^ ]+) ([^ ]+)&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1 </span><span class="sc">\\</span><span class="st">3 </span><span class="sc">\\</span><span class="st">2&quot;</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb185-3"><a href="#cb185-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;The canoe birch slid on the smooth planks.&quot; 
-## [2] &quot;Glue sheet the to the dark blue background.&quot;
-## [3] &quot;It&#39;s to easy tell the depth of a well.&quot;     
-## [4] &quot;These a days chicken leg is a rare dish.&quot;   
+<pre><code>## [1] &quot;The canoe birch slid on the smooth planks.&quot;  &quot;Glue sheet the to the dark blue background.&quot;
+## [3] &quot;It&#39;s to easy tell the depth of a well.&quot;      &quot;These a days chicken leg is a rare dish.&quot;   
 ## [5] &quot;Rice often is served in round bowls.&quot;</code></pre>
 <h3 id="splitting">3.4.5 Splitting</h3>
 <ul>
@@ -2531,37 +2519,28 @@ can use simplify = TRUE to return a matrix</li>
 <span id="cb189-2"><a href="#cb189-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb189-3"><a href="#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_split</span>(<span class="st">&quot; &quot;</span>)</span></code></pre></div>
 <pre><code>## [[1]]
-## [1] &quot;The&quot;     &quot;birch&quot;   &quot;canoe&quot;   &quot;slid&quot;    &quot;on&quot;      &quot;the&quot;     &quot;smooth&quot; 
-## [8] &quot;planks.&quot;
+## [1] &quot;The&quot;     &quot;birch&quot;   &quot;canoe&quot;   &quot;slid&quot;    &quot;on&quot;      &quot;the&quot;     &quot;smooth&quot;  &quot;planks.&quot;
 ## 
 ## [[2]]
-## [1] &quot;Glue&quot;        &quot;the&quot;         &quot;sheet&quot;       &quot;to&quot;          &quot;the&quot;        
-## [6] &quot;dark&quot;        &quot;blue&quot;        &quot;background.&quot;
+## [1] &quot;Glue&quot;        &quot;the&quot;         &quot;sheet&quot;       &quot;to&quot;          &quot;the&quot;         &quot;dark&quot;        &quot;blue&quot;        &quot;background.&quot;
 ## 
 ## [[3]]
 ## [1] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;  &quot;the&quot;   &quot;depth&quot; &quot;of&quot;    &quot;a&quot;     &quot;well.&quot;
 ## 
 ## [[4]]
-## [1] &quot;These&quot;   &quot;days&quot;    &quot;a&quot;       &quot;chicken&quot; &quot;leg&quot;     &quot;is&quot;      &quot;a&quot;      
-## [8] &quot;rare&quot;    &quot;dish.&quot;  
+## [1] &quot;These&quot;   &quot;days&quot;    &quot;a&quot;       &quot;chicken&quot; &quot;leg&quot;     &quot;is&quot;      &quot;a&quot;       &quot;rare&quot;    &quot;dish.&quot;  
 ## 
 ## [[5]]
 ## [1] &quot;Rice&quot;   &quot;is&quot;     &quot;often&quot;  &quot;served&quot; &quot;in&quot;     &quot;round&quot;  &quot;bowls.&quot;</code></pre>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a>sentences <span class="sc">%&gt;%</span></span>
 <span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb191-3"><a href="#cb191-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_split</span>(<span class="st">&quot; &quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>##      [,1]    [,2]    [,3]    [,4]      [,5]  [,6]    [,7]     [,8]         
-## [1,] &quot;The&quot;   &quot;birch&quot; &quot;canoe&quot; &quot;slid&quot;    &quot;on&quot;  &quot;the&quot;   &quot;smooth&quot; &quot;planks.&quot;    
-## [2,] &quot;Glue&quot;  &quot;the&quot;   &quot;sheet&quot; &quot;to&quot;      &quot;the&quot; &quot;dark&quot;  &quot;blue&quot;   &quot;background.&quot;
-## [3,] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;    &quot;the&quot; &quot;depth&quot; &quot;of&quot;     &quot;a&quot;          
-## [4,] &quot;These&quot; &quot;days&quot;  &quot;a&quot;     &quot;chicken&quot; &quot;leg&quot; &quot;is&quot;    &quot;a&quot;      &quot;rare&quot;       
-## [5,] &quot;Rice&quot;  &quot;is&quot;    &quot;often&quot; &quot;served&quot;  &quot;in&quot;  &quot;round&quot; &quot;bowls.&quot; &quot;&quot;           
-##      [,9]   
-## [1,] &quot;&quot;     
-## [2,] &quot;&quot;     
-## [3,] &quot;well.&quot;
-## [4,] &quot;dish.&quot;
-## [5,] &quot;&quot;</code></pre>
+<pre><code>##      [,1]    [,2]    [,3]    [,4]      [,5]  [,6]    [,7]     [,8]          [,9]   
+## [1,] &quot;The&quot;   &quot;birch&quot; &quot;canoe&quot; &quot;slid&quot;    &quot;on&quot;  &quot;the&quot;   &quot;smooth&quot; &quot;planks.&quot;     &quot;&quot;     
+## [2,] &quot;Glue&quot;  &quot;the&quot;   &quot;sheet&quot; &quot;to&quot;      &quot;the&quot; &quot;dark&quot;  &quot;blue&quot;   &quot;background.&quot; &quot;&quot;     
+## [3,] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;    &quot;the&quot; &quot;depth&quot; &quot;of&quot;     &quot;a&quot;           &quot;well.&quot;
+## [4,] &quot;These&quot; &quot;days&quot;  &quot;a&quot;     &quot;chicken&quot; &quot;leg&quot; &quot;is&quot;    &quot;a&quot;      &quot;rare&quot;        &quot;dish.&quot;
+## [5,] &quot;Rice&quot;  &quot;is&quot;    &quot;often&quot; &quot;served&quot;  &quot;in&quot;  &quot;round&quot; &quot;bowls.&quot; &quot;&quot;            &quot;&quot;</code></pre>
 <ul>
 <li>You can also request a maximum number of pieces:</li>
 </ul>
@@ -2605,11 +2584,11 @@ or lowercase forms. This always uses the current locale.</li>
 </ul>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="#cb199-1" aria-hidden="true" tabindex="-1"></a>bananas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;Banana&quot;</span>, <span class="st">&quot;BANANA&quot;</span>)</span>
 <span id="cb199-2"><a href="#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(bananas, <span class="st">&quot;banana&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-70bde17924e3edd7991c" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-70bde17924e3edd7991c">{"x":{"html":"<ul>\n  <li><span class='match'>banana<\/span><\/li>\n  <li>Banana<\/li>\n  <li>BANANA<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-12d27c6ab91ee9f3c263" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-12d27c6ab91ee9f3c263">{"x":{"html":"<ul>\n  <li><span class='match'>banana<\/span><\/li>\n  <li>Banana<\/li>\n  <li>BANANA<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(bananas, <span class="fu">regex</span>(<span class="st">&quot;banana&quot;</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
-<div id="htmlwidget-faf10e03405e85051779" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-faf10e03405e85051779">{"x":{"html":"<ul>\n  <li><span class='match'>banana<\/span><\/li>\n  <li><span class='match'>Banana<\/span><\/li>\n  <li><span class='match'>BANANA<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-41921ca94d25e76e7f64" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-41921ca94d25e76e7f64">{"x":{"html":"<ul>\n  <li><span class='match'>banana<\/span><\/li>\n  <li><span class='match'>Banana<\/span><\/li>\n  <li><span class='match'>BANANA<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>multiline = TRUE allows ^ and $ to match the start and end of each
 line rather than the start and end of the complete string.</li>
@@ -2663,15 +2642,17 @@ environment. This is useful if you can’t quite remember the name of the
 function.</li>
 </ul>
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">&quot;replace&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;%+replace%&quot;       &quot;replace&quot;          &quot;replace_na&quot;       &quot;setReplaceMethod&quot;
-## [5] &quot;str_replace&quot;      &quot;str_replace_all&quot;  &quot;str_replace_na&quot;   &quot;theme_replace&quot;</code></pre>
+<pre><code>##  [1] &quot;%+replace%&quot;                     &quot;.rs.files.replaceBindings&quot;      &quot;.rs.registerReplaceHook&quot;       
+##  [4] &quot;.rs.replaceBinding&quot;             &quot;.rs.rpc.replace_comment_header&quot; &quot;replace&quot;                       
+##  [7] &quot;replace_na&quot;                     &quot;setReplaceMethod&quot;               &quot;str_replace&quot;                   
+## [10] &quot;str_replace_all&quot;                &quot;str_replace_na&quot;                 &quot;theme_replace&quot;</code></pre>
 <ul>
 <li>dir() lists all the files in a directory. For example, you can find
 all the R Markdown files in the current directory with:</li>
 </ul>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">dir</span>(<span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.Rmd$&quot;</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;Advanced R graphics.Rmd&quot;                                     
-## [2] &quot;basic R graphics.Rmd&quot;                                        
+<pre><code>## [1] &quot;Advanced-R-graphics.Rmd&quot;                                     
+## [2] &quot;basic-R-graphics.Rmd&quot;                                        
 ## [3] &quot;Basics-R.Rmd&quot;                                                
 ## [4] &quot;Data-manipulation-via-tidyverse-focus-on-tidyr,-stringr-.Rmd&quot;
 ## [5] &quot;Data manipulation via tidyverse(focus on readr, dplyr).Rmd&quot;  
