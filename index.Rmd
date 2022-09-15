@@ -1,0 +1,63 @@
+---
+title: ClinChoice
+output: 
+    html_document:
+      theme: 
+       bootswatch: sketchy
+---
+
+```{=html}
+<style type="text/css">
+
+h1.title {
+  font-size: 120px;
+}
+body, td {
+   font-size: 20px;
+}
+code.r{
+  font-size: 20px;
+}
+pre {
+  font-size: 20px
+}
+
+</style>
+```
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+------------------------------------------------------------------------
+
+## R Training Sources {.tabset .tabset-fade .tabset-pills}
+
+### Slides
+
+-   [Overview of R & R Markdown](Overview.html)
+-   [Basics of R programming](Basics-R.html)
+-   [Data manipulation via tidyverse (focus on readr, dplyr)](Data manipulation via tidyverse(focus on readr, dplyr).html)
+-   [Data manipulation via tidyverse (focus on tidyr, stringr)](Data manipulation via tidyverse(focus on tidyr, stringr).html)
+-   [Writing functions in R](Writing-functions-in-R.html)
+-   [Basic R graphics](basic-R-graphics.html)
+-   [Advanced R graphics](Advanced-R-graphics.html)
+-   Statistical Analysis in R
+-   Survival Analysis in R
+-   R packages
+
+### Recordings
+
+-   [Recording on 2022-06-09](https://fmdkl-my.sharepoint.com/:v:/g/personal/tao_xiang_klserv_com/ETJ0Xd-uWytAntzt2ZgzX6MBf68NM8ec0AYyTLlTRS9Sng?e=OdYIpC)
+-   [Recording on 2022-06-27](https://fmdkl-my.sharepoint.com/:v:/g/personal/yu_han_klserv_com/ESe5PQ_YfH9BlUP7jDjSSQ0Beym2sVIKlLSj73FpZFGncw)
+-   [Recording on 2022-07-11](https://fmdkl-my.sharepoint.com/:v:/g/personal/tao_xiang_klserv_com/ESghmrReh6tIt6mPNyzVNc4BYl7XheNlKlEjbRZ50yRUAg?e=yzA2cD)
+-   [Recording on 2022-07-27](https://fmdkl-my.sharepoint.com/:v:/g/personal/yaping_wang_klserv_com/EfJTdTrIEnFIqB4UmkEAdcsB8RiBtc1S1XDbsyUYMxWCmA)
+-   [Recording on 2022-08-10](https://fmdkl-my.sharepoint.com/:v:/g/personal/chunyan_zhao_klserv_com/EddK_7xf0sxBsN4oQH0cgtkBxWAt-NZi1erEQFHr6tEraA)
+-   [Recording on 2022-08-18](https://fmdkl-my.sharepoint.com/:v:/g/personal/keting_chen_klserv_com/EYiKDhuCCI1KnfSwRuXIQ6UBA_Hti3LiuOoDy9uyAmJrKQ)
+-   [Recording on 2022-09-01](https://fmdkl-my.sharepoint.com/:v:/g/personal/tao_xiang_klserv_com/EXe-fbeYGHdAgfNff9aTs-oBlt5LwobToJIPmxfqNNoTjQ?e=GfacQ9)
+
+### References
+
+-   [R for Data Science](https://r4ds.had.co.nz/)
+-   [R Cookbook, 2nd Edition](https://rc2e.com/)
+-   [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+-   [R Graphics Cookbook, 2nd edition](https://r-graphics.org/)

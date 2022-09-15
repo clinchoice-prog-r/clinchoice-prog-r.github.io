@@ -682,13 +682,13 @@ similarly to [[ except that you don’t need to use quotes:</li>
 <p>We want to compute the median of each column. You could do it with
 copy-and-paste:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(df<span class="sc">$</span>a)</span></code></pre></div>
-<pre><code>## [1] 0.7709886</code></pre>
+<pre><code>## [1] 0.3106767</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(df<span class="sc">$</span>b)</span></code></pre></div>
-<pre><code>## [1] 0.1010143</code></pre>
+<pre><code>## [1] -0.3954692</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(df<span class="sc">$</span>c)</span></code></pre></div>
-<pre><code>## [1] -0.3872074</code></pre>
+<pre><code>## [1] 0.3277598</code></pre>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(df<span class="sc">$</span>d)</span></code></pre></div>
-<pre><code>## [1] 0.5160652</code></pre>
+<pre><code>## [1] -0.0177083</code></pre>
 <p>But that breaks our rule of thumb: never copy and paste more than
 <strong>twice</strong>. Instead, we could use a for loop:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;double&quot;</span>, <span class="fu">ncol</span>(df)) <span class="co"># 1. output</span></span>
@@ -696,7 +696,7 @@ copy-and-paste:</p>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">median</span>(df[[i]])       <span class="co"># 3. body</span></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>output</span></code></pre></div>
-<pre><code>## [1]  0.7709886  0.1010143 -0.3872074  0.5160652</code></pre>
+<pre><code>## [1]  0.3106767 -0.3954692  0.3277598 -0.0177083</code></pre>
 <p>Every for loop has three components:</p>
 <ol style="list-style-type: decimal">
 <li>output &lt;- vector(“double”, length(x))</li>
@@ -746,19 +746,19 @@ unknown length. • Handling sequences of unknown length.</p>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>df[[i]] <span class="ot">&lt;-</span> df[[i]]<span class="sc">+</span><span class="dv">5</span></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
-<pre><code>## # A tibble: 10 × 4
+<pre><code>## # A tibble: 10 x 4
 ##        a     b     c     d
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  3.17  5.53  3.14  4.79
-##  2  5.93  5.33  4.67  5.52
-##  3  4.31  5.02  3.54  5.52
-##  4  6.23  4.95  4.40  4.27
-##  5  4.49  4.27  6.28  5.56
-##  6  6.58  5.18  4.92  6.34
-##  7  4.42  3.91  6.49  5.23
-##  8  5.72  6.93  2.88  4.04
-##  9  5.82  4.60  5.58  5.63
-## 10  6.26  5.86  4.56  5.83</code></pre>
+##  1  6.80  4.95  5.12  5.02
+##  2  5.50  3.29  4.98  6.84
+##  3  5.40  5.36  4.52  4.40
+##  4  5.69  3.29  6.58  3.67
+##  5  4.95  4.93  4.72  6.11
+##  6  3.87  4.28  6.09  5.58
+##  7  5.22  3.93  6.79  4.63
+##  8  5.54  3.91  5.67  5.40
+##  9  5.03  4.98  5.54  3.96
+## 10  5.14  5.17  3.56  4.95</code></pre>
 </div>
 <div id="looping-patterns" class="slide section level1">
 <h1>2.2.2 Looping Patterns</h1>
@@ -778,7 +778,7 @@ you want to use the name in a plot title or a filename.</p>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>output</span></code></pre></div>
 <pre><code>##        a        b        c        d 
-## 5.770989 5.101014 4.612793 5.516065</code></pre>
+## 5.310677 4.604531 5.327760 4.982292</code></pre>
 </div>
 <div id="unknown-output-length" class="slide section level1">
 <h1>2.2.3 Unknown Output Length</h1>
@@ -822,7 +822,7 @@ to get three heads in a row:</p>
 <span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  flips <span class="ot">&lt;-</span> flips <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>flips</span></code></pre></div>
-<pre><code>## [1] 13</code></pre>
+<pre><code>## [1] 4</code></pre>
 </div>
 <div id="if-else" class="slide section level1">
 <h1>2.3 if-else</h1>
@@ -894,14 +894,14 @@ output values of EXPR.</p>
 <span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>(<span class="fu">max</span>(df<span class="sc">$</span>d, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(df<span class="sc">$</span>d, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> df<span class="sc">$</span>a</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> <span class="fu">min</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span>(<span class="fu">max</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
-<pre><code>##  [1] 0.2753253 0.3030888 1.0000000 0.7000212 0.8259463 0.6867830 0.6692833
-##  [8] 0.0000000 0.5264633 0.8196480</code></pre>
+<pre><code>##  [1] 0.5159792 0.4275818 0.1804455 1.0000000 0.5348367 0.0000000 0.9095075
+##  [8] 0.5699005 0.3586599 0.3519367</code></pre>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>rng <span class="ot">&lt;-</span> <span class="fu">range</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>rng</span></code></pre></div>
 <pre><code>## [1] 0 1</code></pre>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> rng[<span class="dv">1</span>]) <span class="sc">/</span> (rng[<span class="dv">2</span>] <span class="sc">-</span> rng[<span class="dv">1</span>])</span></code></pre></div>
-<pre><code>##  [1] 0.2753253 0.3030888 1.0000000 0.7000212 0.8259463 0.6867830 0.6692833
-##  [8] 0.0000000 0.5264633 0.8196480</code></pre>
+<pre><code>##  [1] 0.5159792 0.4275818 0.1804455 1.0000000 0.5348367 0.0000000 0.9095075
+##  [8] 0.5699005 0.3586599 0.3519367</code></pre>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>rescale01 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  rng <span class="ot">&lt;-</span> <span class="fu">range</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> rng[<span class="dv">1</span>]) <span class="sc">/</span> (rng[<span class="dv">2</span>] <span class="sc">-</span> rng[<span class="dv">1</span>])</span>
@@ -1073,7 +1073,7 @@ object is found.</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>aestdt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2022/08/08&quot;</span>, <span class="st">&quot;2008/08&quot;</span>, <span class="st">&quot;2022//02&quot;</span>, <span class="st">&quot;/08/08&quot;</span>, <span class="st">&quot;/02/&quot;</span>, <span class="st">&quot;//02&quot;</span>, <span class="st">&quot;2022//&quot;</span>,<span class="st">&#39;///&#39;</span>)</span>
 <span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>aeendt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2022/08/08&quot;</span>, <span class="st">&quot;2008/08&quot;</span>, <span class="st">&quot;2022//02&quot;</span>, <span class="st">&quot;/08/08&quot;</span>, <span class="st">&quot;/02/&quot;</span>, <span class="st">&quot;//02&quot;</span>, <span class="st">&quot;2022//&quot;</span>,<span class="st">&#39;///&#39;</span>)</span>
 <span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>ae <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(aestdt,aeendt)</span>
-<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;iso8601.r&quot;</span>)</span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;sourceRcode/iso8601.r&quot;</span>)</span>
 <span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>aestdtc <span class="ot">&lt;-</span> <span class="fu">pdate</span>(<span class="at">indt=</span>ae<span class="sc">$</span>aestdt)</span>
 <span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>aestdtc</span></code></pre></div>
 <pre><code>## [1] &quot;2022-08-08&quot; &quot;2008-08&quot;    &quot;2022---02&quot;  &quot;--08-08&quot;    &quot;--02&quot;      
@@ -1199,7 +1199,7 @@ How did this happen?</p>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a>summary</span></code></pre></div>
 <pre><code>## function (object, ...) 
 ## UseMethod(&quot;summary&quot;)
-## &lt;bytecode: 0x000002957473e200&gt;
+## &lt;bytecode: 0x000001e206ffefd8&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(summary)</span></code></pre></div>
 <pre><code>##  [1] summary,ANY-method                  summary,DBIObject-method           
@@ -1298,9 +1298,9 @@ median, and the standard deviation</p>
 <span id="cb175-6"><a href="#cb175-6" aria-hidden="true" tabindex="-1"></a>  out</span>
 <span id="cb175-7"><a href="#cb175-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb175-8"><a href="#cb175-8" aria-hidden="true" tabindex="-1"></a><span class="fu">col_summary</span>(df, median)</span></code></pre></div>
-<pre><code>## [1] 0.6780331 1.3237850 0.6245919 0.4065108</code></pre>
+<pre><code>## [1] 0.4717805 1.0881710 0.4576214 0.4638175</code></pre>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">col_summary</span>(df, sd)</span></code></pre></div>
-<pre><code>## [1] 0.3049350 0.7124333 0.2741565 0.3557439</code></pre>
+<pre><code>## [1] 0.3020349 0.5574064 0.3072161 0.3205474</code></pre>
 <p>The idea of passing a function to another function is an extremely
 powerful idea, and it’s one of the behaviors that makes R a functional
 programming language.</p>
@@ -1315,7 +1315,7 @@ for each type of output:</p>
 <p>• map_chr() makes a character vector.</p>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dbl</span>(df, median)</span></code></pre></div>
 <pre><code>##         a         b         c         d 
-## 0.6780331 1.3237850 0.6245919 0.4065108</code></pre>
+## 0.4717805 1.0881710 0.4576214 0.4638175</code></pre>
 </div>
 <div id="write-effective-code" class="slide section level1">
 <h1>6 Write effective code</h1>
@@ -1353,14 +1353,14 @@ repeatedly.</p></li>
 ##  [7]  -608.0015  -125.2000  1773.9087   917.9091</code></pre>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">accum</span>(mymatrix))</span></code></pre></div>
 <pre><code>## 用户 系统 流逝 
-## 0.78 0.00 0.79</code></pre>
+## 1.16 0.00 1.16</code></pre>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">colSums</span>(mymatrix)</span>
 <span id="cb186-2"><a href="#cb186-2" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div>
 <pre><code>##  [1]   442.4011 -1215.4048  -443.1674 -1155.9655   122.0290   540.6355
 ##  [7]  -608.0015  -125.2000  1773.9087   917.9091</code></pre>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">colSums</span>(mymatrix))</span></code></pre></div>
 <pre><code>## 用户 系统 流逝 
-## 0.01 0.00 0.01</code></pre>
+##    0    0    0</code></pre>
 </div>
 <div id="an-object-of-the-correct-size" class="slide section level1">
 <h1>6.3 An object of the correct size</h1>
@@ -1370,11 +1370,11 @@ repeatedly.</p></li>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) y[i] <span class="ot">&lt;-</span> x[i]<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## 用户 系统 流逝 
-## 0.04 0.00 0.04</code></pre>
+## 0.03 0.00 0.03</code></pre>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length=</span>k)</span>
 <span id="cb193-2"><a href="#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>k) y[i] <span class="ot">&lt;-</span> x[i]<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## 用户 系统 流逝 
-##    0    0    0</code></pre>
+## 0.02 0.00 0.01</code></pre>
 </div>
 <div id="other-tips" class="slide section level1">
 <h1>6.4 Other tips</h1>
