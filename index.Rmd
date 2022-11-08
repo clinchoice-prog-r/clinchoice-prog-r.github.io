@@ -54,6 +54,7 @@ knitr::opts_chunk$set(echo = TRUE)
 -   [Recording on 2022-08-10](https://fmdkl-my.sharepoint.com/:v:/g/personal/chunyan_zhao_klserv_com/EddK_7xf0sxBsN4oQH0cgtkBxWAt-NZi1erEQFHr6tEraA)
 -   [Recording on 2022-08-18](https://fmdkl-my.sharepoint.com/:v:/g/personal/keting_chen_klserv_com/EYiKDhuCCI1KnfSwRuXIQ6UBA_Hti3LiuOoDy9uyAmJrKQ)
 -   [Recording on 2022-09-01](https://fmdkl-my.sharepoint.com/:v:/g/personal/tao_xiang_klserv_com/EXe-fbeYGHdAgfNff9aTs-oBlt5LwobToJIPmxfqNNoTjQ?e=GfacQ9)
+-   [Recording on 2022-10-31](https://fmdkl-my.sharepoint.com/:v:/g/personal/tao_xiang_klserv_com/EYQHx-QhBlpBgDkP2S2xsVEBoDuLL_7r7WvG4W0vrR1i-w?e=IkdmPN)
 
 ### References
 
