@@ -1,0 +1,265 @@
+---
+title: "Survival Analysis in R"
+author: "Yu Han"
+date: "2022-10-31"
+output:
+    slidy_presentation:
+    duration: 45
+    footer: Copyright (c) 2022, Clinchoice
+---
+
+```{r setup}
+```
+
+## Outline
+
+1.  What is survival analysis?
+2.  Use R to output common graphs
+
+## 1. What is survival analysis?
+
+Efficacy analysis: ADRS, ADEFF, ADTTE,...
+
+## 1. What is survival analysis?
+
+-   Survival Analysis is a field of statistical tools used to assess the time until an event occurs.
+
+-   S(t)=Pr(T\>t）=1−F(t)\
+
+    S(t): survival function
+
+    F(t)=Pr(T≤t): cumulative distribution function
+
+Examples from cancer:
+
+-   Time from surgery to death
+-   Time from start of treatment to progression
+-   Time from response to recurrence
+
+Time-to-event data are common in many other fields. Some other examples include:
+
+-   Time from HIV infection to development of AIDS
+-   Time to heart attack
+-   Time to onset of substance abuse
+-   Time to initiation of sexual activity
+-   Time to machine malfunction
+
+## 1. What is survival analysis?
+Because time-to-event data are common in many fields, it also goes by names besides survival analysis including:
+
+-   Reliability analysis
+-   Duration analysis
+-   Event history analysis
+-   Time-to-event analysis
+-
+-   Initial event
+-   Failure event
+-
+-   Completed data
+-   Incomplete data
+-   Censored data
+-   Truncated data\*
+
+## 2.Use R to output common graphs
+
+1.Packages
+-    surviva, lubridate, ggsurvfit, gtsummary, survminer, tidycmprsk
+Note: tidycmprsk() loads %>%
+
+```{R include=FALSE}
+library(survival)
+library(lubridate)
+library(ggsurvfit)
+library(gtsummary)
+library(survminer)
+library(tidycmprsk)    # loads %>%
+```
+
+2.The dataset: lung
+
+-   time: Observed survival time in days
+-   status: censoring status 1=censored, 2=dead
+-   sex: 1=Male, 2=Female
+
+```{R}
+library(survival)
+head(lung[, c("time", "status", "sex")])
+```
+
+\* ADEFF.CNSR: 1=censored, 0=event.
+
+## 2.Use R to output common graphs
+
+3.Creating survival objects and curves The Kaplan-Meier method is the most common way to estimate survival times and probabilities. It is a non-parametric approach that results in a step function, where there is a step down each time an event occurs.
+
+```{R}
+Surv(lung$time, lung$status)[1:10]
+```
+
+```{R}
+s1 <- survfit(Surv(time, status) ~ 1, data = lung)
+str(s1)
+```
+
+Some key components of this object that will be used to create survival curves include: **survfit**
+
+time: the timepoints at which the curve has a step, i.e. at least one event occurred surv: the estimate of survival at the corresponding time
+
+## 2.Use R to output common graphs
+
+4.Kaplan-Meier plots 
+We will use the {ggsurvfit} package to generate Kaplan-Meier plots. This package aims to ease plotting of time-to-event endpoints using the power of the {ggplot2} package.
+
+```{R}
+survfit2(Surv(time, status) ~ 1, data = lung) %>% 
+  ggsurvfit() +
+  labs(
+    x = "Days",
+    y = "Overall survival probability"
+  )
+```
+
+```{R}
+survfit2(Surv(time, status) ~ sex, data = lung) %>% 
+  ggsurvfit() +
+  labs(
+    x = "Days",
+    y = "Overall survival probability"
+  )
+```
+## 2.Use R to output common graphs
+The default plot in shows the step function only. We can add the confidence interval. **ggsurvfit()add_confidence_interval()**
+
+```{r}
+survfit2(Surv(time, status) ~ sex, data = lung) %>% 
+  ggsurvfit() +
+  labs(
+    x = "Days",
+    y = "Overall survival probability"
+  ) + 
+  add_confidence_interval()
+```
+
+Typically we will also want to see the numbers at risk in a table below the x-axis. **add_risktable()**
+
+```{R}
+survfit2(Surv(time, status) ~ sex, data = lung) %>% 
+  ggsurvfit() +
+  labs(
+    x = "Days",
+    y = "Overall survival probability"
+    ) + 
+  add_confidence_interval() +
+  add_risktable()
+```
+
+## 2.Use R to output common graphs
+Use **ggsurvplot()**
+
+```{R}
+require("survival")
+fit=survfit(Surv(time, status) ~ sex, data = lung)
+ggsurvplot(fit)
+```
+```{R}
+ggsurvplot(fit, legend="bottom",
+           legend.title="Sex",
+           legend.labs = c("Male", "Female"))
+```
+
+```{R}
+ggsurvplot(fit, legend=c(0.2,0.2))
+```
+## 2.Use R to output common graphs
+```{R}
+ggsurvplot(fit, conf.int=TRUE, 
+           palette = c("#EFB800", "2E9FDF"))
+```
+
+```{R}
+ggsurvplot(fit, conf.int=TRUE, 
+           risk.table = TRUE, risk.table.y.text.col = TRUE)
+```
+
+```{R}
+ggsurvplot(fit, conf.int=TRUE, 
+           risk.table = TRUE,  risk.table.col = "strata",
+          ggtheme = theme_bw(),
+          xlim = c(0, 300))
+```
+```{R}
+survfit2(Surv(time, status) ~ sex, data = df_lung) %>% 
+  ggsurvfit(size = 1) +
+  add_censor_mark(shape = 4) +
+  add_quantile(linetype = 3, size = 1) +
+  add_confidence_interval() +
+  facet_grid(~strata)
+```
+  
+## 2.Use R to output common graphs
+5.Estimating median survival time
+
+Another quantity often of interest in a survival analysis is the average survival time, which we quantify using the median. Survival times are not expected to be normally distributed so the mean is not an appropriate summary.
+
+We can obtain the median survival directly from the object:**survfit**
+
+```{R}
+survfit(Surv(time, status) ~ 1, data = lung)
+```
+
+We can produce nice tables of median survival time estimates using the function from the {gtsummary} package:**tbl_survfit()**
+
+```{R}
+survfit(Surv(time, status) ~ 1, data = lung) %>% 
+  tbl_survfit(
+    probs = 0.5,
+    label_header = "**Median survival (95% CI)**"
+  )
+```
+
+## 2.Use R to output common graphs
+6.Comparing survival times between groups
+
+We can conduct between-group significance tests using a log-rank test. The log-rank test equally weights observations over the entire follow-up time and is the most common way to compare survival times between groups. There are versions that more heavily weight the early or late follow-up that could be more appropriate depending on the research question (see for different test options).**survdiff**
+
+We get the **log-rank** p-value using the function. For example, we can test whether there was a difference in survival time according to sex in the data:**survdifflung**
+
+```{R}
+survdiff(Surv(time, status) ~ sex, data = lung)
+```
+
+We see that there was a significant difference in overall survival according to sex in the data, with a p-value of p = 0.001.
+
+## 2.Use R to output common graphs
+7.The Cox regression model We may want to quantify an effect size for a single variable, or include more than one variable into a regression model to account for the effects of multiple variables.
+
+The Cox regression model is a semi-parametric model that can be used to fit univariable and multivariable regression models that have survival outcomes.
+
+     h(t|Xp)=h0(t)exp(β1Xi1+⋯+βpXp)
+
+h(t): hazard, or the instantaneous rate at which events occur h0(t): underlying baseline hazard
+
+Some key assumptions of the model:
+
+-   non-informative censoring
+-   proportional hazards
+
+We can fit regression models for survival data using the function from the {survival} package, which takes a object on the left hand side and has standard syntax for regression formulas in on the right hand side. **coxph() Surv()R**
+
+```{R}
+coxph(Surv(time, status) ~ sex, data = lung)
+```
+
+We can obtain tables of results using the function from the **{gtsummary}** package, with the option to exponentiate set to TRUE to return the hazard ratio rather than the log hazard ratio: **tbl_regression()**
+
+```{R}
+coxph(Surv(time, status) ~ sex, data = lung) %>% 
+  tbl_regression(exp = TRUE) 
+```
+
+The quantity of interest from a Cox regression model is a hazard ratio (HR). The HR represents the ratio of hazards between two groups at any particular point in time. The HR is interpreted as the instantaneous rate of occurrence of the event of interest in those who are still at risk for the event. It is not a risk, though it is commonly mis-interpreted as such. If you have a regression parameter β, then HR = exp(β).
+
+A HR \< 1 indicates reduced hazard of death whereas a HR \> 1 indicates an increased hazard of death.
+
+So the HR = 0.59 implies that 0.59 times as many females are dying as males, at any given time. Stated differently, females have a significantly lower hazard of death than males in these data.
+
