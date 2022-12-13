@@ -41,9 +41,12 @@ knitr::opts_chunk$set(echo = TRUE)
 -   [Writing functions in R](Writing-functions-in-R.html)
 -   [Basic R graphics](basic-R-graphics.html)
 -   [Advanced R graphics](Advanced-R-graphics.html)
--   Statistical Analysis in R
--   Survival Analysis in R
+-   [Statistical Analysis in R](Statistical-Analysis-in-R.html)
+-   [Survival Analysis in R](Survival-Analysis-in-R.html)
 -   [R packages](R-package.html)
+
+<span style='font-size:30px!important;color:orange!important;float:right'>&#9755; Proposal for next stage is in development</span>
+
 
 ### Recordings
 
@@ -56,6 +59,7 @@ knitr::opts_chunk$set(echo = TRUE)
 -   [Recording on 2022-09-01](https://fmdkl-my.sharepoint.com/:v:/g/personal/tao_xiang_klserv_com/EXe-fbeYGHdAgfNff9aTs-oBlt5LwobToJIPmxfqNNoTjQ?e=GfacQ9)
 -   [Recording on 2022-10-31](https://fmdkl-my.sharepoint.com/:v:/g/personal/tao_xiang_klserv_com/EYQHx-QhBlpBgDkP2S2xsVEBoDuLL_7r7WvG4W0vrR1i-w?e=IkdmPN)
 -   [Recording on 2022-11-24](https://fmdkl-my.sharepoint.com/:v:/g/personal/qi_yang_klserv_com/EYY0dFs7SWtDp-6TEGpDo74BpVq-M6L9vhz9TtIk-MBsdg)
+-   [Recording on 2022-12-12](https://fmdkl-my.sharepoint.com/:v:/g/personal/you_ye_klserv_com/ERAoDG62gBtItn7iKnRdiR4Ba-Dj30jD96cdyfprCPT1wA)
 
 ### References
 
