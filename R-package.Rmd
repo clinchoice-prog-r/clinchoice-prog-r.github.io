@@ -480,7 +480,7 @@ install.packages(file.path("~/document","Test_0.0.0.9000.tar.gz"),repos=NULL,typ
 - Gold standard for checking that an R package is in full working order.
 
 ```{r, eval=FALSE, echo=TRUE}
-system("R CMD check ~/document/GatorPKG_0.0.0.9000.tar.gz")
+system("R CMD check ~/document/Test_0.0.0.9000.tar.gz")
 ```
 
 ## 15. Post hoc
