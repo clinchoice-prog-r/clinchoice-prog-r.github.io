@@ -45,7 +45,7 @@ knitr::opts_chunk$set(echo = TRUE)
 -   [Survival Analysis in R](Survival-Analysis-in-R.html)
 -   [R packages](R-package.html)
 
-<span style='font-size:30px!important;color:orange!important;float:right'>&#9755; Proposal for next stage is in development</span>
+<span style='font-size:40px!important;color:orange!important;float:right'>&#9755;[Stage 2](Stage-2-intro.html)</span>
 
 
 ### Recordings
