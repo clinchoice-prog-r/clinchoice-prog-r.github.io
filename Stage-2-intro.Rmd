@@ -1,0 +1,179 @@
+---
+title: "Perspective for applying R programming in Stage 2"
+author: "Tao Xiang"
+date: '2023-02-09'
+output:
+  slidy_presentation:
+    css: columns.css
+    footer: Copyright (c) 2022, Clinchoice
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Essentials
+
+After the elementary training for R programming in Stage 1, you are expected to have the skills below:
+
+1.	Understand R data structure and perform data management in R.
+2.	Write workable functions in R which can be understood and covered by others.
+3.	Implement data manipulation skills via Tidyverse.
+4.	Perform data visualization via ggplot2.
+5.	Construct basic statistical analysis in R for clinical data.
+6.	Be familiar with some widely used R packages and understand how to build R packages.
+
+## Objectives in Stage 2
+
+As a fresh R user, we will set some raw objectives about what we need to do in next Stage and what product we need to create.
+
+- SDTM?
+- ADaM?
+- TLF?
+
+## Clinical Study Reports (TLF)
+
+Based on the concept of [ICH E3 Guidelines](https://www.ema.europa.eu/en/documents/scientific-guideline/ich-e-3-structure-content-clinical-study-reports-step-5_en.pdf), in pharmaceutical industry, RTF played a crucial rule for statistical analysis.
+
+Creating TLF RTF is one of the most important work scope for us in Stage 2
+
+## Lessons to learn
+
+On Nov 22nd, 2021, an R-based test submission package has been submitted successfully through the FDA eCTD gateway which is credited to R Submissions Working Group in R Consortium.
+
+This submission package is available for public in [R Consortium GitHub](https://github.com/RConsortium/submissions-pilot1-to-fda).
+
+I believe these public available materials will be the most valuable thing for us to learn.
+
+## Three submission pilot 
+
+<span style="color:red">**RConsortium/submissions-pilot1-to-fda**</span>: A respiratory in GitHub demonstrates the eCTD submission package, an FDA official response letter with statistical review and evaluation is also covered in this repo
+
+RConsortium/submissions-pilot2-to-fda: A respiratory in GitHub tests the concept that a Shiny application created with the R-language can be bundled into a submission package and transferred successfully to FDA reviewers. (Ongoing)
+
+<span style="color:red">**RConsortium/submissions-pilot3-to-fda**</span>: A respiratory in GitHub expands on the work done in submission Pilot 1 by utilizing R to generate ADaM datasets
+
+## R Packages for use
+
+Base R
+- Consist of:
+-- 14 Base Packages (base, methods, stats, …)
+-- 15 Recommended Packages (MASS, cluster, survival, …)
+
+Packages for data manipulation and outputs delivery
+```{r, eval=FALSE, echo=TRUE}
+library(tidyverse)
+# Attaching packages which is mainly applied for data manipulation
+# v ggplot2     v purrr   
+# v tibble      v dplyr   
+# v tidyr       v stringr 
+# v readr       v forcats 
+
+library(haven)
+# Dealing with XPT data
+
+library(markdown)
+# Output Reports
+
+```
+
+## Some R Packages for RTF as example
+
+:::::: {.cols data-latex=""}
+
+::: {.col data-latex="{0.3\textwidth}"}
+**rtable** made by Roche
+
+![](png/rtable.png){height=120%, width=120%}
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.3\textwidth}"}
+**r2rtf** made by Merck
+
+![](png/r2rtf.png)
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.3\textwidth}"}
+**pharmRTF** made by Atorus
+
+![](png/pharmrtf.png)
+:::
+::::::
+
+
+## Goals for TLF with R
+
+- R programs for typical efficacy/safty tables which can be used as internal standard reference
+
+- R plots sample programs made by ggplot which can be used as internal standard reference
+
+- A R package based on tidyverse and R markdown:  
+
+  - be able to generate RTF and PDF mostly follow the current TLF template
+  - functionally workable
+  - with good doumentation
+  - created and maintained by us
+
+## SDTM/ADaM
+
+- There is no trending R programming strategy for either SDTM or ADaM.
+
+- Because SDTM and ADaM are data manipulation programming varied by domains and studies, tidyverse and haven package will be the essential R package for use.
+
+- Suggest similar working flow like SAS do, consider about the format about metadata.
+
+- May need some standard and validated functions for some typical data manipulation (eg, ISO8601 date standardization, generate metadata from spec, split long character string into more variables, so and so forth)
+
+- A package to contain these functions is recommended.
+
+## Essential knowledge and skills to improve
+
+- Cultivate your own R programming style, recommend [the tidyverse style guide](https://style.tidyverse.org/)
+
+- R Function skills
+
+- Good Documentation (A very general and crucial skill depended on writing)
+
+
+
+## Extra topics and knowledge
+
+- <span style="color:red">Shiny</span>
+
+- <span style="color:red">GitHub</span>
+
+- Rcpp
+
+
+## Persepctive
+
+- After all these works have been successfully implemented, a demo project will be proposed.
+
+- R package validation method
+
+- Submission related works, like [Packaging data analytical work reproducibly using R (and friends)](https://peerj.com/preprints/3192/)
+
+- Documentation for all these working instruction (Considering use `bookdown`)
+
+## Q&A {.bigger}
+
+
+
+
+
+
+
+
+
