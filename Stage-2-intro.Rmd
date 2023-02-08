@@ -55,12 +55,12 @@ RConsortium/submissions-pilot2-to-fda: A respiratory in GitHub tests the concept
 
 ## R Packages for use
 
-Base R
-- Consist of:
--- 14 Base Packages (base, methods, stats, …)
--- 15 Recommended Packages (MASS, cluster, survival, …)
+- Base R
+  - Consist of:
+    - 14 Base Packages (base, methods, stats, …)
+    - 15 Recommended Packages (MASS, cluster, survival, …)
 
-Packages for data manipulation and outputs delivery
+- Packages for data manipulation and outputs delivery:
 ```{r, eval=FALSE, echo=TRUE}
 library(tidyverse)
 # Attaching packages which is mainly applied for data manipulation
